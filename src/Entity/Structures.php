@@ -2,12 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\StructureRepository;
-use Doctrine\DBAL\Types\Types;
+use App\Repository\StructuresRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: StructureRepository::class)]
-class Structure
+#[ORM\Entity(repositoryClass: StructuresRepository::class)]
+class Structures
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -17,8 +16,12 @@ class Structure
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(length: 255)]
     private ?string $address = null;
+
+    #[ORM\ManyToOne(inversedBy: 'associated_structures')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Partners $mother_partner = null;
 
     public function getId(): ?int
     {
@@ -45,6 +48,18 @@ class Structure
     public function setAddress(string $address): self
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    public function getMotherPartner(): ?Partners
+    {
+        return $this->mother_partner;
+    }
+
+    public function setMotherPartner(?Partners $mother_partner): self
+    {
+        $this->mother_partner = $mother_partner;
 
         return $this;
     }

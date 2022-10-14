@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Structure;
+use App\Entity\Structures;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Structure>
+ * @extends ServiceEntityRepository<Structures>
  *
- * @method Structure|null find($id, $lockMode = null, $lockVersion = null)
- * @method Structure|null findOneBy(array $criteria, array $orderBy = null)
- * @method Structure[]    findAll()
- * @method Structure[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Structures|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Structures|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Structures[]    findAll()
+ * @method Structures[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class StructureRepository extends ServiceEntityRepository
+class StructuresRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Structure::class);
+        parent::__construct($registry, Structures::class);
     }
 
-    public function save(Structure $entity, bool $flush = false): void
+    public function save(Structures $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class StructureRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Structure $entity, bool $flush = false): void
+    public function remove(Structures $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class StructureRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Structure[] Returns an array of Structure objects
+//     * @return Structures[] Returns an array of Structures objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class StructureRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Structure
+//    public function findOneBySomeField($value): ?Structures
 //    {
 //        return $this->createQueryBuilder('s')
 //            ->andWhere('s.exampleField = :val')
